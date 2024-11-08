@@ -1,0 +1,9 @@
+<svg id="iphone" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="39.286" viewBox="0 0 25 39.286">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#8abb2a"/>
+      <stop offset="1" stop-color="#3c9b36"/>
+    </linearGradient>
+  </defs>
+  <path id="Icon_color" data-name="Icon color" d="M19.642,39.286H5.356A5.363,5.363,0,0,1,0,33.929V5.357A5.363,5.363,0,0,1,5.356,0H19.642A5.363,5.363,0,0,1,25,5.357V33.929A5.363,5.363,0,0,1,19.642,39.286ZM5.356,3.571A1.788,1.788,0,0,0,3.571,5.357V33.929a1.788,1.788,0,0,0,1.785,1.786H19.642a1.788,1.788,0,0,0,1.785-1.786V5.357a1.785,1.785,0,1,0-3.571,0,1.788,1.788,0,0,1-1.785,1.786H8.929A1.788,1.788,0,0,1,7.142,5.357,1.788,1.788,0,0,0,5.356,3.571Z" fill="url(#linear-gradient)"/>
+</svg>

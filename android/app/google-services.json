@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "844852597269",
+    "project_id": "parrotpos-52d76",
+    "storage_bucket": "parrotpos-52d76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844852597269:android:d7e20b5b89bebc0f3b741c",
+        "android_client_info": {
+          "package_name": "com.parrotpos.parrotpos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844852597269-4h014vn21pf2bcl50vsbkhcfgn03vvol.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.parrotpos.parrotpos",
+            "certificate_hash": "9fc956403be8b8420f9a7d882b79d55861a9f322"
+          }
+        },
+        {
+          "client_id": "844852597269-a0g37dddcd8p42qtdajq99iq70cbsfcr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyczJheEZ3BAwy9FBGR5iY27Tx8gF7Duw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844852597269-a0g37dddcd8p42qtdajq99iq70cbsfcr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "844852597269-50p2h3pp1qr9gce6a564oitjmfojjh99.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.parrot.user"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844852597269:android:df4800831d320f8c3b741c",
+        "android_client_info": {
+          "package_name": "com.parrotpos.parrotpos2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844852597269-g1ii12tvokr779qql0fm7mjgi01p6o1i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.parrotpos.parrotpos2",
+            "certificate_hash": "9fc956403be8b8420f9a7d882b79d55861a9f322"
+          }
+        },
+        {
+          "client_id": "844852597269-a0g37dddcd8p42qtdajq99iq70cbsfcr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyczJheEZ3BAwy9FBGR5iY27Tx8gF7Duw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844852597269-a0g37dddcd8p42qtdajq99iq70cbsfcr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "844852597269-50p2h3pp1qr9gce6a564oitjmfojjh99.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.parrot.user"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
