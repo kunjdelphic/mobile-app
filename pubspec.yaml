@@ -106,8 +106,6 @@
 #    - assets/icons/earning_wallet/
 #    - assets/icons/notification/
 
-
-
 name: parrotpos
 description: A bill payment and top up app
 
@@ -172,7 +170,7 @@ dependencies:
   slide_countdown: ^1.6.1
   qr_flutter: ^4.0.0
   connectivity_plus: ^6.0.2
-  screenshot: ^2.1.0
+  screenshot: ^3.0.0
   path_provider: ^2.0.9
   #  flutter_widget_from_html_core: ^0.14.11
   #  flutter_widget_from_html_core: ^0.9.1
@@ -192,7 +190,6 @@ dependencies:
   device_info_plus:
   snappable_thanos: ^0.0.4
 
-
   shimmer: ^3.0.0
   #  shimmer_animation: ^2.1.0+1
   google_sign_in: ^6.0.2
@@ -204,15 +201,13 @@ dependencies:
   firebase_core_platform_interface: ^4.6.0
   #  firebase_core_platform_interface: 4.5.2
   cached_network_image: ^3.3.0
+  video_player: ^2.9.2
 #  pdfx: ^2.6.0
-
-
 
 dev_dependencies:
   flutter_lints: ^3.0.2
   flutter_test:
     sdk: flutter
-
 
 #firebase_core_platform_interface:
 #  dependency: "direct main"
@@ -238,8 +233,6 @@ dependency_overrides:
   fwfh_webview:
   photo_manager: ^3.0.0-dev.2
 #  pdfx: ^1.0.1
-
-
 
 flutter:
   uses-material-design: true

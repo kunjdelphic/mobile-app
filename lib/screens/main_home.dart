@@ -22,6 +22,7 @@ import 'package:parrotpos/screens/promotions_detail_screen.dart';
 import 'package:parrotpos/screens/top_up/top_up_screen.dart';
 import 'package:parrotpos/screens/user_profile/wallet/wallet_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:parrotpos/screens/vouchers/add_bills.dart';
 import 'package:parrotpos/services/remote_service.dart';
 import 'package:parrotpos/style/colors.dart';
 import 'package:parrotpos/style/style.dart';
@@ -48,14 +49,17 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
-  final UserProfileController userProfileController = Get.put(UserProfileController());
+  final UserProfileController userProfileController =
+      Get.put(UserProfileController());
   final WalletController walletController = Get.put(WalletController());
   final ReferralController referralController = Get.put(ReferralController());
   final TopUpController topUpController = Get.put(TopUpController());
   final FavoriteController favoriteController = Get.put(FavoriteController());
   final DonationController donationController = Get.put(DonationController());
-  final BillPaymentController billPaymentController = Get.put(BillPaymentController());
-  final NotificationController notificationController = Get.put(NotificationController());
+  final BillPaymentController billPaymentController =
+      Get.put(BillPaymentController());
+  final NotificationController notificationController =
+      Get.put(NotificationController());
 
   int _current = 0;
   final CarouselController carouselController = CarouselController();
@@ -97,7 +101,8 @@ class _MainHomeState extends State<MainHome> {
             child: GetX<UserProfileController>(
               init: userProfileController,
               builder: (controller) {
-                if ((controller.isFetching.value && controller.userProfile.value.data == null)) {
+                if ((controller.isFetching.value &&
+                    controller.userProfile.value.data == null)) {
                   return Column(
                     children: [
                       const SizedBox(height: 3),
@@ -119,7 +124,8 @@ class _MainHomeState extends State<MainHome> {
                           child: Row(
                             children: [
                               const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 2),
                                 child: Icon(
                                   Icons.more_vert_outlined,
                                 ),
@@ -282,7 +288,8 @@ class _MainHomeState extends State<MainHome> {
                           child: Row(
                             children: [
                               const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 2),
                                 child: Icon(
                                   Icons.more_vert_outlined,
                                 ),
@@ -307,7 +314,8 @@ class _MainHomeState extends State<MainHome> {
                                   ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
-                                    child: Center(child: Container(color: Colors.black)),
+                                    child: Center(
+                                        child: Container(color: Colors.black)),
                                   ),
                                 ),
                               ),
@@ -385,7 +393,8 @@ class _MainHomeState extends State<MainHome> {
                                 Get.to(() => const UserProfileScreen());
                               },
                               child: const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 2),
                                 child: Icon(
                                   Icons.more_vert_outlined,
                                 ),
@@ -411,14 +420,25 @@ class _MainHomeState extends State<MainHome> {
                                   ),
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(100),
-                                      child: Obx(() => true ?? controller.userProfile.value.data!.profileImage != "https://parrotpostest.blob.core.windows.net/images/no_image.svg"
+                                      child: Obx(() => true ??
+                                              controller.userProfile.value.data!
+                                                      .profileImage !=
+                                                  "https://parrotpostest.blob.core.windows.net/images/no_image.svg"
                                           ? CircleAvatar(
                                               backgroundColor: Colors.white,
                                               child: CachedNetworkImage(
-                                                  imageUrl: controller.userProfile.value.data!.profileImage.toString(),
-                                                  errorWidget: (context, url, error) {
+                                                  imageUrl: controller
+                                                      .userProfile
+                                                      .value
+                                                      .data!
+                                                      .profileImage
+                                                      .toString(),
+                                                  errorWidget:
+                                                      (context, url, error) {
                                                     return Padding(
-                                                      padding: const EdgeInsets.all(4.0),
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              4.0),
                                                       child: Image.asset(
                                                         "assets/images/logo/parrot_logo.png",
                                                         fit: BoxFit.contain,
@@ -430,8 +450,10 @@ class _MainHomeState extends State<MainHome> {
                                                   },
                                                   placeholder: (c, s) {
                                                     return Shimmer.fromColors(
-                                                      baseColor: Colors.grey.shade200,
-                                                      highlightColor: Colors.grey.shade50,
+                                                      baseColor:
+                                                          Colors.grey.shade200,
+                                                      highlightColor:
+                                                          Colors.grey.shade50,
                                                       child: Image.asset(
                                                         'assets/images/logo/parrot_logo.png',
                                                         fit: BoxFit.contain,
@@ -454,11 +476,19 @@ class _MainHomeState extends State<MainHome> {
                                                       //     ).image),
                                                       //   ),),
                                                     );
-                                                    return Shimmer.fromColors(baseColor: Colors.grey.shade200, highlightColor: Colors.grey.shade50, child: Container(color: Colors.white));
+                                                    return Shimmer.fromColors(
+                                                        baseColor: Colors
+                                                            .grey.shade200,
+                                                        highlightColor:
+                                                            Colors.grey.shade50,
+                                                        child: Container(
+                                                            color:
+                                                                Colors.white));
                                                   }))
                                           : Container(
                                               child: Padding(
-                                              padding: const EdgeInsets.all(4.0),
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
                                               child: Image.asset(
                                                 "assets/images/logo/parrot_logo.png",
                                               ),
@@ -547,7 +577,8 @@ class _MainHomeState extends State<MainHome> {
                                     style: kBlackDarkMediumStyle,
                                   ),
                                   Text(
-                                    controller.userProfile.value.data?.name ?? "----",
+                                    controller.userProfile.value.data?.name ??
+                                        "----",
                                     style: kBlackSmallMediumStyle,
                                   ),
                                 ],
@@ -594,7 +625,8 @@ class _MainHomeState extends State<MainHome> {
                             GestureDetector(
                               onTap: () async {
                                 // Future<void> checkPermission() async {
-                                var status = await Permission.notification.status;
+                                var status =
+                                    await Permission.notification.status;
                                 if (status.isGranted) {
                                   Get.to(() => NotificationScreen());
                                 } else {
@@ -695,11 +727,13 @@ class _MainHomeState extends State<MainHome> {
                             donationController.getDonation();
                           });
                           // userProfileController.getUserDetails();
-                          print("+++++ ${userProfileController.getUserDetails()}");
+                          print(
+                              "+++++ ${userProfileController.getUserDetails()}");
                           return;
                         },
                         child: ListView(
-                          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 0, vertical: 10),
                           children: [
                             GestureDetector(
                               onTap: () {
@@ -707,9 +741,11 @@ class _MainHomeState extends State<MainHome> {
                               },
                               child: Container(
                                 // height: 115,
-                                margin: const EdgeInsets.symmetric(horizontal: 20),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 20),
                                 width: Get.width * 0.9,
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 12),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12),
                                   gradient: const LinearGradient(
@@ -737,16 +773,22 @@ class _MainHomeState extends State<MainHome> {
                                       ),
                                     ),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   'Main Wallet',
@@ -769,8 +811,10 @@ class _MainHomeState extends State<MainHome> {
                                               ],
                                             ),
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
                                               children: [
                                                 Text(
                                                   'Balance',
@@ -778,7 +822,8 @@ class _MainHomeState extends State<MainHome> {
                                                 ),
                                                 Text(
                                                   '${userProfileController.userProfile.value.data!.currency} ${userProfileController.userProfile.value.data!.mainWalletBalance}',
-                                                  style: kWhiteDarkSuperLargeStyle,
+                                                  style:
+                                                      kWhiteDarkSuperLargeStyle,
                                                 ),
                                                 const SizedBox(
                                                   height: 15,
@@ -804,9 +849,11 @@ class _MainHomeState extends State<MainHome> {
                               height: 25,
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   GestureDetector(
                                     onTap: () {
@@ -820,7 +867,8 @@ class _MainHomeState extends State<MainHome> {
                                           padding: const EdgeInsets.all(20),
                                           decoration: BoxDecoration(
                                             color: const Color(0xffF6F6F6),
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: Center(
                                             child: SvgPicture.asset(
@@ -845,7 +893,8 @@ class _MainHomeState extends State<MainHome> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      Get.to(() => const MainBillPaymentScreen());
+                                      Get.to(
+                                          () => const MainBillPaymentScreen());
                                     },
                                     child: Column(
                                       children: [
@@ -855,7 +904,8 @@ class _MainHomeState extends State<MainHome> {
                                           padding: const EdgeInsets.all(20),
                                           decoration: BoxDecoration(
                                             color: const Color(0xffF6F6F6),
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: Center(
                                             child: SvgPicture.asset(
@@ -880,9 +930,11 @@ class _MainHomeState extends State<MainHome> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      ScaffoldMessenger.of(context).showSnackBar(
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
                                         SnackBar(
-                                          duration: const Duration(milliseconds: 1000),
+                                          duration: const Duration(
+                                              milliseconds: 1000),
                                           backgroundColor: kColorPrimary,
                                           content: Text(
                                             'Coming soon!',
@@ -899,7 +951,8 @@ class _MainHomeState extends State<MainHome> {
                                           padding: const EdgeInsets.all(20),
                                           decoration: BoxDecoration(
                                             color: const Color(0xffF6F6F6),
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: Center(
                                             child: SvgPicture.asset(
@@ -926,9 +979,11 @@ class _MainHomeState extends State<MainHome> {
                               height: 25,
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   GestureDetector(
                                     onTap: () {
@@ -942,7 +997,8 @@ class _MainHomeState extends State<MainHome> {
                                           padding: const EdgeInsets.all(20),
                                           decoration: BoxDecoration(
                                             color: const Color(0xffF6F6F6),
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: Center(
                                             child: SvgPicture.asset(
@@ -966,7 +1022,8 @@ class _MainHomeState extends State<MainHome> {
                                     width: 15,
                                   ),
                                   GestureDetector(
-                                    onTap: () => Get.to(() => const FavoriteScreen()),
+                                    onTap: () =>
+                                        Get.to(() => const FavoriteScreen()),
                                     child: Column(
                                       children: [
                                         Container(
@@ -975,7 +1032,8 @@ class _MainHomeState extends State<MainHome> {
                                           padding: const EdgeInsets.all(20),
                                           decoration: BoxDecoration(
                                             color: const Color(0xffF6F6F6),
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: Center(
                                             child: SvgPicture.asset(
@@ -1036,10 +1094,126 @@ class _MainHomeState extends State<MainHome> {
                               indent: 20,
                               endIndent: 20,
                             ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Vouchers for you',
+                                    style:
+                                        kBlackDarkExtraLargeStyle, //kBlackDarkSuperLargeStyle,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            userProfileController.userProfile.value.data!
+                                    .promotions!.isNotEmpty
+                                ? CarouselSlider(
+                                    options: CarouselOptions(
+                                      height: Get.height * 0.2,
+                                      enlargeCenterPage: true,
+                                      autoPlay: true,
+                                      viewportFraction: 0.7,
+                                      initialPage: 3,
+                                      onPageChanged: (index, reason) {
+                                        setState(() {
+                                          _current = index;
+                                        });
+                                      },
+                                    ),
+                                    carouselController: carouselController,
+                                    items: userProfileController
+                                        .userProfile.value.data!.promotions!
+                                        .map((e) => GestureDetector(
+                                              onTap: () {
+                                                Get.to(() =>
+                                                    const AddBillVoucher());
+                                              },
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                child: CachedNetworkImage(
+                                                  imageUrl: e.image!,
+                                                  fit: BoxFit.cover,
+                                                  placeholder: (c, s) {
+                                                    return Shimmer.fromColors(
+                                                        baseColor: Colors
+                                                            .grey.shade200,
+                                                        highlightColor:
+                                                            Colors.grey.shade50,
+                                                        child: Container(
+                                                            color:
+                                                                Colors.white));
+                                                  },
+                                                  errorWidget: (context, error,
+                                                          stackTrace) =>
+                                                      const Icon(
+                                                    Icons.error,
+                                                  ),
+                                                ),
+                                              ),
+                                            ))
+                                        .toList(),
+                                  )
+                                : CarouselSlider(
+                                    options: CarouselOptions(
+                                      height: Get.height * 0.2,
+                                      enlargeCenterPage: true,
+                                      autoPlay: true,
+                                      viewportFraction: 0.7,
+                                      initialPage: 3,
+                                      onPageChanged: (index, reason) {
+                                        setState(() {
+                                          _current = index;
+                                        });
+                                      },
+                                    ),
+                                    carouselController: carouselController,
+                                    items: [1, 2, 3]
+                                        .map((e) => GestureDetector(
+                                              onTap: () {},
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  child: Shimmer.fromColors(
+                                                      baseColor:
+                                                          Colors.grey.shade200,
+                                                      highlightColor:
+                                                          Colors.grey.shade50,
+                                                      child: Container(
+                                                          color:
+                                                              Colors.white))),
+                                            ))
+                                        .toList(),
+                                  ),
                             const SizedBox(
                               height: 20,
                             ),
-                            userProfileController.userProfile.value.data!.promotions!.isNotEmpty
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Recent Deals',
+                                    style:
+                                        kBlackDarkExtraLargeStyle, //kBlackDarkSuperLargeStyle,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            userProfileController.userProfile.value.data!
+                                    .promotions!.isNotEmpty
                                 ? Column(
                                     children: [
                                       CarouselSlider(
@@ -1057,24 +1231,39 @@ class _MainHomeState extends State<MainHome> {
                                         ),
                                         carouselController: carouselController,
 
-                                        items: userProfileController.userProfile.value.data!.promotions!
+                                        items: userProfileController
+                                            .userProfile.value.data!.promotions!
                                             .map((e) => GestureDetector(
                                                   onTap: () {
                                                     Get.to(
-                                                      () => PromotionsDetailScreen(
+                                                      () =>
+                                                          PromotionsDetailScreen(
                                                         extraGuides: e,
                                                       ),
                                                     );
                                                   },
                                                   child: ClipRRect(
-                                                    borderRadius: BorderRadius.circular(20),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
                                                     child: CachedNetworkImage(
                                                       imageUrl: e.image!,
                                                       fit: BoxFit.cover,
                                                       placeholder: (c, s) {
-                                                        return Shimmer.fromColors(baseColor: Colors.grey.shade200, highlightColor: Colors.grey.shade50, child: Container(color: Colors.white));
+                                                        return Shimmer.fromColors(
+                                                            baseColor: Colors
+                                                                .grey.shade200,
+                                                            highlightColor:
+                                                                Colors.grey
+                                                                    .shade50,
+                                                            child: Container(
+                                                                color: Colors
+                                                                    .white));
                                                       },
-                                                      errorWidget: (context, error, stackTrace) => const Icon(
+                                                      errorWidget: (context,
+                                                              error,
+                                                              stackTrace) =>
+                                                          const Icon(
                                                         Icons.error,
                                                       ),
                                                     ),
@@ -1096,18 +1285,36 @@ class _MainHomeState extends State<MainHome> {
                                         // }).toList(),
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: userProfileController.userProfile.value.data!.promotions!.asMap().entries.map((entry) {
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: userProfileController
+                                            .userProfile.value.data!.promotions!
+                                            .asMap()
+                                            .entries
+                                            .map((entry) {
                                           return GestureDetector(
-                                            onTap: () => carouselController.animateToPage(entry.key),
+                                            onTap: () => carouselController
+                                                .animateToPage(entry.key),
                                             child: Container(
                                               width: 12.0,
                                               height: 3.0,
-                                              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8.0,
+                                                      horizontal: 4.0),
                                               decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(2),
                                                   shape: BoxShape.rectangle,
-                                                  color: (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black).withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                                                  color: (Theme.of(context)
+                                                                  .brightness ==
+                                                              Brightness.dark
+                                                          ? Colors.white
+                                                          : Colors.black)
+                                                      .withOpacity(
+                                                          _current == entry.key
+                                                              ? 0.9
+                                                              : 0.4)),
                                             ),
                                           );
                                         }).toList(),
@@ -1137,24 +1344,51 @@ class _MainHomeState extends State<MainHome> {
                                             .map((e) => GestureDetector(
                                                   onTap: () {},
                                                   child: ClipRRect(
-                                                      borderRadius: BorderRadius.circular(20),
-                                                      child: Shimmer.fromColors(baseColor: Colors.grey.shade200, highlightColor: Colors.grey.shade50, child: Container(color: Colors.white))),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                      child: Shimmer.fromColors(
+                                                          baseColor: Colors
+                                                              .grey.shade200,
+                                                          highlightColor: Colors
+                                                              .grey.shade50,
+                                                          child: Container(
+                                                              color: Colors
+                                                                  .white))),
                                                 ))
                                             .toList(),
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: userProfileController.userProfile.value.data!.promotions!.asMap().entries.map((entry) {
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: userProfileController
+                                            .userProfile.value.data!.promotions!
+                                            .asMap()
+                                            .entries
+                                            .map((entry) {
                                           return GestureDetector(
-                                            onTap: () => carouselController.animateToPage(entry.key),
+                                            onTap: () => carouselController
+                                                .animateToPage(entry.key),
                                             child: Container(
                                               width: 12.0,
                                               height: 3.0,
-                                              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8.0,
+                                                      horizontal: 4.0),
                                               decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(2),
                                                   shape: BoxShape.rectangle,
-                                                  color: (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black).withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                                                  color: (Theme.of(context)
+                                                                  .brightness ==
+                                                              Brightness.dark
+                                                          ? Colors.white
+                                                          : Colors.black)
+                                                      .withOpacity(
+                                                          _current == entry.key
+                                                              ? 0.9
+                                                              : 0.4)),
                                             ),
                                           );
                                         }).toList(),
@@ -1167,13 +1401,16 @@ class _MainHomeState extends State<MainHome> {
                             const HomeScreenCarousel(),
                             // shimmer end,
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Extra Guides',
-                                    style: kBlackDarkExtraLargeStyle, //kBlackDarkSuperLargeStyle,
+                                    style:
+                                        kBlackDarkExtraLargeStyle, //kBlackDarkSuperLargeStyle,
                                   ),
                                   // TextButton(
                                   //   onPressed: () {
@@ -1190,7 +1427,8 @@ class _MainHomeState extends State<MainHome> {
                             const SizedBox(
                               height: 20,
                             ),
-                            userProfileController.userProfile.value.data!.extraGuides!.isNotEmpty
+                            userProfileController.userProfile.value.data!
+                                    .extraGuides!.isNotEmpty
                                 ?
                                 // GridView.builder(
                                 //         gridDelegate:
@@ -1320,20 +1558,46 @@ class _MainHomeState extends State<MainHome> {
                                 //                 .value.data!.extraGuides!.length,
                                 //       )
                                 GridView.builder(
-                                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                       childAspectRatio: 0.8,
                                       crossAxisSpacing: 15,
                                       mainAxisSpacing: 15,
                                     ),
                                     shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                                    itemCount: (userProfileController.userProfile.value.data!.extraGuides!.length > 4 ? 4 : userProfileController.userProfile.value.data!.extraGuides!.length),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 6),
+                                    itemCount: (userProfileController
+                                                .userProfile
+                                                .value
+                                                .data!
+                                                .extraGuides!
+                                                .length >
+                                            4
+                                        ? 4
+                                        : userProfileController.userProfile
+                                            .value.data!.extraGuides!.length),
                                     itemBuilder: (context, index) {
                                       // Check if the current index is the last one in the displayed grid
                                       bool isLastIndex = index ==
-                                          (userProfileController.userProfile.value.data!.extraGuides!.length > 4 ? 4 - 1 : userProfileController.userProfile.value.data!.extraGuides!.length - 1);
+                                          (userProfileController
+                                                      .userProfile
+                                                      .value
+                                                      .data!
+                                                      .extraGuides!
+                                                      .length >
+                                                  4
+                                              ? 4 - 1
+                                              : userProfileController
+                                                      .userProfile
+                                                      .value
+                                                      .data!
+                                                      .extraGuides!
+                                                      .length -
+                                                  1);
 
                                       // if (isLastIndex) {
                                       //   return GestureDetector(
@@ -1370,7 +1634,11 @@ class _MainHomeState extends State<MainHome> {
                                         onTap: () {
                                           Get.to(
                                             () => ExtraGuideDetailScreen(
-                                              extraGuides: userProfileController.userProfile.value.data!.extraGuides![index],
+                                              extraGuides: userProfileController
+                                                  .userProfile
+                                                  .value
+                                                  .data!
+                                                  .extraGuides![index],
                                             ),
                                           );
                                         },
@@ -1379,32 +1647,56 @@ class _MainHomeState extends State<MainHome> {
                                             Container(
                                               width: Get.width,
                                               decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(18),
+                                                borderRadius:
+                                                    BorderRadius.circular(18),
                                                 color: kWhite,
                                                 boxShadow: [
                                                   BoxShadow(
-                                                    color: Colors.black.withOpacity(0.08),
+                                                    color: Colors.black
+                                                        .withOpacity(0.08),
                                                     spreadRadius: 1,
                                                     blurRadius: 6,
                                                   ),
                                                 ],
                                               ),
                                               child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   Expanded(
                                                     child: ClipRRect(
-                                                      borderRadius: BorderRadius.circular(18),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              18),
                                                       child: CachedNetworkImage(
-                                                        imageUrl: userProfileController.userProfile.value.data!.extraGuides![index].image ?? '',
-                                                        placeholder: (context, url) {
-                                                          return Shimmer.fromColors(
-                                                            child: Container(color: Colors.white),
-                                                            baseColor: Colors.grey.shade200,
-                                                            highlightColor: Colors.grey.shade50,
+                                                        imageUrl:
+                                                            userProfileController
+                                                                    .userProfile
+                                                                    .value
+                                                                    .data!
+                                                                    .extraGuides![
+                                                                        index]
+                                                                    .image ??
+                                                                '',
+                                                        placeholder:
+                                                            (context, url) {
+                                                          return Shimmer
+                                                              .fromColors(
+                                                            child: Container(
+                                                                color: Colors
+                                                                    .white),
+                                                            baseColor: Colors
+                                                                .grey.shade200,
+                                                            highlightColor:
+                                                                Colors.grey
+                                                                    .shade50,
                                                           );
                                                         },
-                                                        errorWidget: (context, error, stackTrace) => const Icon(Icons.error),
+                                                        errorWidget: (context,
+                                                                error,
+                                                                stackTrace) =>
+                                                            const Icon(
+                                                                Icons.error),
                                                         fit: BoxFit.cover,
                                                         width: Get.width,
                                                       ),
@@ -1412,81 +1704,126 @@ class _MainHomeState extends State<MainHome> {
                                                   ),
                                                   const SizedBox(height: 8),
                                                   Padding(
-                                                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 10),
                                                     child: Text(
                                                       '${userProfileController.userProfile.value.data!.extraGuides![index].heading}',
                                                       maxLines: 1,
-                                                      overflow: TextOverflow.ellipsis,
-                                                      style: kBlackDarkLargeStyle,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style:
+                                                          kBlackDarkLargeStyle,
                                                     ),
                                                   ),
                                                   const SizedBox(height: 6),
                                                   Padding(
-                                                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 10),
                                                     child: Text(
                                                       '${userProfileController.userProfile.value.data!.extraGuides![index].description}',
                                                       maxLines: 2,
-                                                      overflow: TextOverflow.ellipsis,
-                                                      style: kBlackLightMediumStyle,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style:
+                                                          kBlackLightMediumStyle,
                                                     ),
                                                   ),
                                                   const SizedBox(height: 12),
                                                 ],
                                               ),
                                             ),
-                                            if (userProfileController.userProfile.value.data!.extraGuides!.length > 3)
+                                            if (userProfileController
+                                                    .userProfile
+                                                    .value
+                                                    .data!
+                                                    .extraGuides!
+                                                    .length >
+                                                3)
                                               if (isLastIndex)
                                                 Container(
                                                   width: Get.width,
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
                                                     // border: Border.all(width: 1, color: Colors.black),
-                                                    borderRadius: BorderRadius.circular(18),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            18),
                                                     color: kWhite,
                                                     boxShadow: [
                                                       BoxShadow(
-                                                        color: Colors.grey.shade200,
+                                                        color: Colors
+                                                            .grey.shade200,
                                                         spreadRadius: 1,
                                                         blurRadius: 1,
                                                       ),
                                                     ],
                                                   ),
                                                   child: Material(
-                                                    borderRadius: BorderRadius.circular(18),
-                                                    color: kWhite.withOpacity(0.7),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            18),
+                                                    color:
+                                                        kWhite.withOpacity(0.7),
                                                     child: Ink(
                                                       child: InkWell(
                                                         autofocus: true,
-                                                        splashFactory: InkRipple.splashFactory,
-                                                        borderRadius: BorderRadius.circular(18),
+                                                        splashFactory: InkRipple
+                                                            .splashFactory,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(18),
                                                         onTap: () {
                                                           Future.delayed(
-                                                            Duration(milliseconds: 100),
+                                                            Duration(
+                                                                milliseconds:
+                                                                    100),
                                                             () {
-                                                              Get.to(() => const AllExtraGuidesScreen());
+                                                              Get.to(() =>
+                                                                  const AllExtraGuidesScreen());
                                                             },
                                                           );
                                                         },
                                                         child: Column(
-                                                          mainAxisAlignment: MainAxisAlignment.end,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
                                                           children: [
                                                             Container(
                                                               height: 100,
                                                               width: 100,
-                                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: const Color(0xffF2F1F7)),
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50),
+                                                                  color: const Color(
+                                                                      0xffF2F1F7)),
                                                               child: Icon(
-                                                                Icons.arrow_forward_ios_rounded,
+                                                                Icons
+                                                                    .arrow_forward_ios_rounded,
                                                                 size: 30,
-                                                                color: Colors.grey.withOpacity(0.8),
+                                                                color: Colors
+                                                                    .grey
+                                                                    .withOpacity(
+                                                                        0.8),
                                                               ),
                                                             ),
-                                                            const Divider(thickness: 0.30),
+                                                            const Divider(
+                                                                thickness:
+                                                                    0.30),
                                                             Padding(
-                                                              padding: EdgeInsets.all(8.0),
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(8.0),
                                                               child: Text(
                                                                 'View More \n Guide  ',
-                                                                textAlign: TextAlign.center,
-                                                                style: kBlackDarkLargeStyle, //TextStyle(fontSize: 18, fontWeight: FontWeight.bold,) // kBlackLightMediumStyle,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style:
+                                                                    kBlackDarkLargeStyle, //TextStyle(fontSize: 18, fontWeight: FontWeight.bold,) // kBlackLightMediumStyle,
                                                               ),
                                                             ),
                                                           ],
@@ -1531,19 +1868,22 @@ class _MainHomeState extends State<MainHome> {
                                     },
                                   )
                                 : GridView.builder(
-                                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                       childAspectRatio: 0.8,
                                       crossAxisSpacing: 15,
                                       mainAxisSpacing: 15,
                                     ),
                                     shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 16,
                                       vertical: 6,
                                     ),
-                                    itemBuilder: (context, index) => GestureDetector(
+                                    itemBuilder: (context, index) =>
+                                        GestureDetector(
                                       onTap: () {
                                         //  Get.to(
                                         //   () => ExtraGuideDetailScreen(
@@ -1558,31 +1898,53 @@ class _MainHomeState extends State<MainHome> {
                                       child: Container(
                                         width: Get.width,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(18),
+                                          borderRadius:
+                                              BorderRadius.circular(18),
                                           color: kWhite,
                                           boxShadow: [
                                             BoxShadow(
-                                              color: Colors.black.withOpacity(0.08),
+                                              color: Colors.black
+                                                  .withOpacity(0.08),
                                               spreadRadius: 1,
                                               blurRadius: 6,
                                             ),
                                           ],
                                         ),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Expanded(
                                               child: ClipRRect(
-                                                borderRadius: BorderRadius.circular(18),
+                                                borderRadius:
+                                                    BorderRadius.circular(18),
                                                 child: Shimmer.fromColors(
-                                                  baseColor: Colors.grey.shade300,
-                                                  highlightColor: Colors.grey.shade100,
+                                                  baseColor:
+                                                      Colors.grey.shade300,
+                                                  highlightColor:
+                                                      Colors.grey.shade100,
                                                   child: CachedNetworkImage(
-                                                    imageUrl: userProfileController.userProfile.value.data!.extraGuides![index].image.toString(),
-                                                    placeholder: (context, image) {
-                                                      return Shimmer.fromColors(baseColor: Colors.grey.shade300, highlightColor: Colors.grey.shade100, child: Container());
+                                                    imageUrl:
+                                                        userProfileController
+                                                            .userProfile
+                                                            .value
+                                                            .data!
+                                                            .extraGuides![index]
+                                                            .image
+                                                            .toString(),
+                                                    placeholder:
+                                                        (context, image) {
+                                                      return Shimmer.fromColors(
+                                                          baseColor: Colors
+                                                              .grey.shade300,
+                                                          highlightColor: Colors
+                                                              .grey.shade100,
+                                                          child: Container());
                                                     },
-                                                    errorWidget: (context, error, stackTrace) => const Icon(
+                                                    errorWidget: (context,
+                                                            error,
+                                                            stackTrace) =>
+                                                        const Icon(
                                                       Icons.error,
                                                     ),
                                                     fit: BoxFit.cover,
@@ -1595,17 +1957,35 @@ class _MainHomeState extends State<MainHome> {
                                               height: 8,
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10),
                                               child: Shimmer.fromColors(
-                                                  baseColor: Colors.grey.shade300, highlightColor: Colors.grey.shade100, child: Container(color: Colors.white, width: 100, height: 20)),
+                                                  baseColor:
+                                                      Colors.grey.shade300,
+                                                  highlightColor:
+                                                      Colors.grey.shade100,
+                                                  child: Container(
+                                                      color: Colors.white,
+                                                      width: 100,
+                                                      height: 20)),
                                             ),
                                             const SizedBox(
                                               height: 6,
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10),
                                               child: Shimmer.fromColors(
-                                                  baseColor: Colors.grey.shade300, highlightColor: Colors.grey.shade100, child: Container(color: Colors.white, width: 2000, height: 20)),
+                                                  baseColor:
+                                                      Colors.grey.shade300,
+                                                  highlightColor:
+                                                      Colors.grey.shade100,
+                                                  child: Container(
+                                                      color: Colors.white,
+                                                      width: 2000,
+                                                      height: 20)),
                                             ),
                                             const SizedBox(
                                               height: 12,
@@ -1614,7 +1994,16 @@ class _MainHomeState extends State<MainHome> {
                                         ),
                                       ),
                                     ),
-                                    itemCount: userProfileController.userProfile.value.data!.extraGuides!.length > 4 ? 4 : userProfileController.userProfile.value.data!.extraGuides!.length,
+                                    itemCount: userProfileController
+                                                .userProfile
+                                                .value
+                                                .data!
+                                                .extraGuides!
+                                                .length >
+                                            4
+                                        ? 4
+                                        : userProfileController.userProfile
+                                            .value.data!.extraGuides!.length,
                                   ),
                             const SizedBox(
                               height: 20,
@@ -2146,7 +2535,9 @@ Widget beforeLoading(context) {
                               //   ),
                               // );
                             },
-                            child: ClipRRect(borderRadius: BorderRadius.circular(20), child: Container(color: Colors.white)),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(color: Colors.white)),
                           ))
                       .toList(),
                   // [1, 2, 3].map((i) {
@@ -2171,7 +2562,8 @@ Widget beforeLoading(context) {
                       child: Container(
                         width: 12.0,
                         height: 3.0,
-                        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 4.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(2),
                           shape: BoxShape.rectangle,
@@ -2249,7 +2641,8 @@ Widget beforeLoading(context) {
                               highlightColor: Colors.grey.shade100,
                               child: Image.network(
                                 '',
-                                errorBuilder: (context, error, stackTrace) => const Icon(
+                                errorBuilder: (context, error, stackTrace) =>
+                                    const Icon(
                                   Icons.error,
                                 ),
                                 fit: BoxFit.cover,
@@ -2263,14 +2656,24 @@ Widget beforeLoading(context) {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Shimmer.fromColors(baseColor: Colors.grey.shade300, highlightColor: Colors.grey.shade100, child: Container(color: Colors.white, width: 100, height: 20)),
+                          child: Shimmer.fromColors(
+                              baseColor: Colors.grey.shade300,
+                              highlightColor: Colors.grey.shade100,
+                              child: Container(
+                                  color: Colors.white, width: 100, height: 20)),
                         ),
                         const SizedBox(
                           height: 6,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Shimmer.fromColors(baseColor: Colors.grey.shade300, highlightColor: Colors.grey.shade100, child: Container(color: Colors.white, width: 2000, height: 20)),
+                          child: Shimmer.fromColors(
+                              baseColor: Colors.grey.shade300,
+                              highlightColor: Colors.grey.shade100,
+                              child: Container(
+                                  color: Colors.white,
+                                  width: 2000,
+                                  height: 20)),
                         ),
                         const SizedBox(
                           height: 12,

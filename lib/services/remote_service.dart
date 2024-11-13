@@ -53,7 +53,7 @@ import '../screens/server_upgrade_custom_screen.dart';
 // String baseUrl = "https://gateway.dev.parrotpos.com.my/";
 //
 ///Production URL
-String baseUrl = "https://gateway.parrotpos.com.my/";
+String baseUrl = "https://gateway.dev.parrotpos.com.my/";
 
 // production = https://gateway.parrotpos.com.my/
 // development = https://gateway.dev.parrotpos.com.my/
@@ -71,7 +71,9 @@ class RemoteService {
   static GetStorage getStorage = GetStorage();
   static var client = http.Client();
 
-  static Map<String, String> header = {"Content-type": "application/json; charset=utf-8"};
+  static Map<String, String> header = {
+    "Content-type": "application/json; charset=utf-8"
+  };
   static Map<String, String> authHeader = {
     "Content-type": "application/json; charset=utf-8",
     "access_id": accessId,
@@ -545,7 +547,8 @@ class RemoteService {
   static Future verifyForgotPassword(map) async {
     try {
       Response res = await client.post(
-        Uri.parse(baseUrl + accounts + noAuth + "otp-verification-reset-password"),
+        Uri.parse(
+            baseUrl + accounts + noAuth + "otp-verification-reset-password"),
         headers: header,
         body: jsonEncode(map),
       );
@@ -578,7 +581,8 @@ class RemoteService {
 
       print("res code ====== ${res.statusCode}");
       var response = jsonDecode(res.body);
-      if (response['status'] == 401 || response['message'] == 'Session Expired') {
+      if (response['status'] == 401 ||
+          response['message'] == 'Session Expired') {
         return UserProfile(
           status: 401,
           message: 'Session Expired!',
@@ -631,7 +635,8 @@ class RemoteService {
           }
 
           if (res.statusCode == 502) {
-            prefix.Get.offAll(ServerMaintenanceScreen(screenName: "Send Money"));
+            prefix.Get.offAll(
+                ServerMaintenanceScreen(screenName: "Send Money"));
           }
 
           return response;
@@ -640,7 +645,11 @@ class RemoteService {
             'POST',
             Uri.parse(baseUrl + accounts + auth + "upload-card-images"),
           );
-          request.fields.addAll({'document_type': '${map['cardType']}', 'card_name': '${map['name']}', 'card_number': '${map['cardNo']}'});
+          request.fields.addAll({
+            'document_type': '${map['cardType']}',
+            'card_name': '${map['name']}',
+            'card_number': '${map['cardNo']}'
+          });
           if (map['cardType'] == 'ID_CARD') {
             //two images
             request.files.add(http.MultipartFile(
@@ -687,7 +696,8 @@ class RemoteService {
           }
 
           if (res.statusCode == 502) {
-            prefix.Get.offAll(ServerMaintenanceScreen(screenName: "Send Money"));
+            prefix.Get.offAll(
+                ServerMaintenanceScreen(screenName: "Send Money"));
           }
 
           return response;
@@ -729,7 +739,8 @@ class RemoteService {
           }
 
           if (res.statusCode == 502) {
-            prefix.Get.offAll(ServerMaintenanceScreen(screenName: "Send Money"));
+            prefix.Get.offAll(
+                ServerMaintenanceScreen(screenName: "Send Money"));
           }
 
           return response;
@@ -763,7 +774,8 @@ class RemoteService {
         prefix.Get.to(const CustomServerUpgradeScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired') {
+      if (response['status'] == 401 &&
+          response['message'] == 'Session Expired') {
         return BankList(
           status: 401,
           message: 'Session Expired!',
@@ -782,7 +794,8 @@ class RemoteService {
     }
   }
 
-  static Future<ProductTransactionHistory> getProductTransactionHistory(Map map) async {
+  static Future<ProductTransactionHistory> getProductTransactionHistory(
+      Map map) async {
     try {
       ProductTransactionHistory productTransactionHistory;
       Response res = await client.post(
@@ -798,7 +811,8 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired') {
+      if (response['status'] == 401 &&
+          response['message'] == 'Session Expired') {
         return ProductTransactionHistory(
           status: 401,
           message: 'Session Expired!',
@@ -840,7 +854,8 @@ class RemoteService {
         prefix.Get.to(const CustomServerUpgradeScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired') {
+      if (response['status'] == 401 &&
+          response['message'] == 'Session Expired') {
         return DayReferralEarning(
           status: 401,
           message: 'Session Expired!',
@@ -861,7 +876,8 @@ class RemoteService {
   static Future addBankToUserList(Map map) async {
     try {
       Response res = await client.post(
-        Uri.parse(baseUrl + wallet + mainWalletReload + "add-to-user-bank-list"),
+        Uri.parse(
+            baseUrl + wallet + mainWalletReload + "add-to-user-bank-list"),
         headers: authHeader,
         body: jsonEncode(map),
       );
@@ -889,7 +905,8 @@ class RemoteService {
   static Future removeBankFromUserList(Map map) async {
     try {
       Response res = await client.post(
-        Uri.parse(baseUrl + wallet + mainWalletReload + "remove-from-user-bank-list"),
+        Uri.parse(
+            baseUrl + wallet + mainWalletReload + "remove-from-user-bank-list"),
         headers: authHeader,
         body: jsonEncode(map),
       );
@@ -932,7 +949,8 @@ class RemoteService {
       }
 
       print("response +++  ${response}");
-      if (response['status'] == 401 && response['message'] == 'Session Expired') {
+      if (response['status'] == 401 &&
+          response['message'] == 'Session Expired') {
         return MainWalletReload(
           status: 401,
           message: 'Session Expired!',
@@ -969,7 +987,9 @@ class RemoteService {
         prefix.Get.to(const CustomServerUpgradeScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return WalletBalance(
           status: 401,
           message: 'Unable to fetch wallet balance!',
@@ -1025,11 +1045,13 @@ class RemoteService {
     }
   }
 
-  static Future<ReferralTermsAndConditions> getReferralTermsAndConditions(String type) async {
+  static Future<ReferralTermsAndConditions> getReferralTermsAndConditions(
+      String type) async {
     try {
       ReferralTermsAndConditions termsAndConditions;
       Response res = await client.post(
-        Uri.parse(baseUrl + userReports + "no-auth/fetch-referral-terms-conditions"),
+        Uri.parse(
+            baseUrl + userReports + "no-auth/fetch-referral-terms-conditions"),
         headers: header,
       );
 
@@ -1228,7 +1250,8 @@ class RemoteService {
         prefix.Get.to(const CustomServerUpgradeScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired') {
+      if (response['status'] == 401 &&
+          response['message'] == 'Session Expired') {
         return SendMoneyRecentList(
           status: 401,
           message: 'Session Expired!',
@@ -1247,18 +1270,25 @@ class RemoteService {
     }
   }
 
-  static Future<EarningHistory> getEarningHistory(Map map, {bool refreshing = false}) async {
+  static Future<EarningHistory> getEarningHistory(Map map,
+      {bool refreshing = false}) async {
     try {
       EarningHistory earningHistory;
       if (refreshing) {
-        Response res2 = await client.post(Uri.parse(baseUrl + userReports + "reports/earning-history"), headers: authHeader, body: jsonEncode({'page_no': 0}));
+        Response res2 = await client.post(
+            Uri.parse(baseUrl + userReports + "reports/earning-history"),
+            headers: authHeader,
+            body: jsonEncode({'page_no': 0}));
         earningHistory = EarningHistory.fromJson(jsonDecode(res2.body));
         // log(res2.statusCode.toString());
         log('refreshing earning ........... ${earningHistory.data!.length}');
 
         return earningHistory;
       } else {
-        Response res = await client.post(Uri.parse(baseUrl + userReports + "reports/earning-history"), headers: authHeader, body: jsonEncode(map));
+        Response res = await client.post(
+            Uri.parse(baseUrl + userReports + "reports/earning-history"),
+            headers: authHeader,
+            body: jsonEncode(map));
 
         var response = jsonDecode(res.body);
 
@@ -1266,7 +1296,9 @@ class RemoteService {
           prefix.Get.offAll(const ServerMaintenanceScreen());
         }
 
-        if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+        if (response['status'] == 401 &&
+                response['message'] == 'Session Expired' ||
+            response['status'] == 503) {
           return EarningHistory(
             status: 401,
             message: 'Unable to fetch earning history!',
@@ -1398,7 +1430,9 @@ class RemoteService {
       if (res.statusCode == 503 || jsonDecode(res.body)["status"] == 503) {
         prefix.Get.to(const CustomServerUpgradeScreen());
       }
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return EarningWallet(
           status: 401,
           message: 'Unable to fetch earning wallet!',
@@ -1418,12 +1452,16 @@ class RemoteService {
     }
   }
 
-  static Future<TransactionHistory> getTransactionHistory(Map map, {bool refreshing = false}) async {
+  static Future<TransactionHistory> getTransactionHistory(Map map,
+      {bool refreshing = false}) async {
     try {
       // WalletController con = prefix.Get.find();
       TransactionHistory transactionHistory;
       if (refreshing) {
-        Response res2 = await client.post(Uri.parse(baseUrl + userReports + "reports/transaction-history"), headers: authHeader, body: jsonEncode({'page_no': 0}));
+        Response res2 = await client.post(
+            Uri.parse(baseUrl + userReports + "reports/transaction-history"),
+            headers: authHeader,
+            body: jsonEncode({'page_no': 0}));
         transactionHistory = TransactionHistory.fromJson(jsonDecode(res2.body));
 
         log('refreshing ........... ${transactionHistory.data!.length}');
@@ -1435,7 +1473,10 @@ class RemoteService {
 
         return transactionHistory;
       } else {
-        Response res = await client.post(Uri.parse(baseUrl + userReports + "reports/transaction-history"), headers: authHeader, body: jsonEncode(map));
+        Response res = await client.post(
+            Uri.parse(baseUrl + userReports + "reports/transaction-history"),
+            headers: authHeader,
+            body: jsonEncode(map));
 
         // print(res.statusCode);
         var response = jsonDecode(res.body);
@@ -1445,7 +1486,9 @@ class RemoteService {
           prefix.Get.offAll(const ServerMaintenanceScreen());
         }
 
-        if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+        if (response['status'] == 401 &&
+                response['message'] == 'Session Expired' ||
+            response['status'] == 503) {
           return TransactionHistory(
             status: 401,
             message: 'Unable to fetch transaction history!',
@@ -1466,11 +1509,13 @@ class RemoteService {
     }
   }
 
-  static Future<TransactionHistoryFilterProducts> getTransactionHistoryFilterProducts(Map map) async {
+  static Future<TransactionHistoryFilterProducts>
+      getTransactionHistoryFilterProducts(Map map) async {
     try {
       TransactionHistoryFilterProducts transactionHistoryFilterProducts;
       Response res = await client.post(
-        Uri.parse(baseUrl + userReports + "reports/transaction-history-products"),
+        Uri.parse(
+            baseUrl + userReports + "reports/transaction-history-products"),
         headers: authHeader,
       );
 
@@ -1480,7 +1525,9 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return TransactionHistoryFilterProducts(
           status: 401,
           message: 'Unable to fetch transaction history!',
@@ -1488,7 +1535,8 @@ class RemoteService {
         );
       }
 
-      transactionHistoryFilterProducts = TransactionHistoryFilterProducts.fromJson(response);
+      transactionHistoryFilterProducts =
+          TransactionHistoryFilterProducts.fromJson(response);
 
       return transactionHistoryFilterProducts;
     } catch (e) {
@@ -1564,7 +1612,8 @@ class RemoteService {
             // authHeader
             {
           "Content-type": "application/json; charset=utf-8",
-          "access_id": "8ghgseoca07f4yu4nx2yizkc0mtsm7w7ftmqyiuoes65nmup8ldf2jwqu8hsq37eomg1cadyl3jgfcd439brk0l933d3j70ws39sklc97co32rssnb3t6fkqf4av6htic9zyiqqhbcg7don3eegd5a",
+          "access_id":
+              "8ghgseoca07f4yu4nx2yizkc0mtsm7w7ftmqyiuoes65nmup8ldf2jwqu8hsq37eomg1cadyl3jgfcd439brk0l933d3j70ws39sklc97co32rssnb3t6fkqf4av6htic9zyiqqhbcg7don3eegd5a",
         },
       );
 
@@ -1592,13 +1641,15 @@ class RemoteService {
   static Future getNotificationRead({required String id}) async {
     try {
       Response res = await client.get(
-        Uri.parse(baseUrl + accounts + 'auth/read-notification?notificationId=${id}'),
+        Uri.parse(
+            baseUrl + accounts + 'auth/read-notification?notificationId=${id}'),
         // Uri.parse("https://gateway.dev.parrotpos.com.my/accounts/auth/notifications"),
         headers:
             // authHeader
             {
           "Content-type": "application/json; charset=utf-8",
-          "access_id": "8ghgseoca07f4yu4nx2yizkc0mtsm7w7ftmqyiuoes65nmup8ldf2jwqu8hsq37eomg1cadyl3jgfcd439brk0l933d3j70ws39sklc97co32rssnb3t6fkqf4av6htic9zyiqqhbcg7don3eegd5a",
+          "access_id":
+              "8ghgseoca07f4yu4nx2yizkc0mtsm7w7ftmqyiuoes65nmup8ldf2jwqu8hsq37eomg1cadyl3jgfcd439brk0l933d3j70ws39sklc97co32rssnb3t6fkqf4av6htic9zyiqqhbcg7don3eegd5a",
         },
       );
 
@@ -1627,13 +1678,16 @@ class RemoteService {
     print("Tokens  +-+-+-+-+-+-+-+-+- ${token}");
     try {
       Response res = await client.post(
-        Uri.parse(baseUrl + accounts + 'auth/update-user-notification-token?token=${token}'),
+        Uri.parse(baseUrl +
+            accounts +
+            'auth/update-user-notification-token?token=${token}'),
         // Uri.parse("https://gateway.dev.parrotpos.com.my/accounts/auth/notifications"),
         headers:
             // authHeader
             {
           "Content-type": "application/json; charset=utf-8",
-          "access_id": "8ghgseoca07f4yu4nx2yizkc0mtsm7w7ftmqyiuoes65nmup8ldf2jwqu8hsq37eomg1cadyl3jgfcd439brk0l933d3j70ws39sklc97co32rssnb3t6fkqf4av6htic9zyiqqhbcg7don3eegd5a",
+          "access_id":
+              "8ghgseoca07f4yu4nx2yizkc0mtsm7w7ftmqyiuoes65nmup8ldf2jwqu8hsq37eomg1cadyl3jgfcd439brk0l933d3j70ws39sklc97co32rssnb3t6fkqf4av6htic9zyiqqhbcg7don3eegd5a",
         },
       );
 
@@ -1661,13 +1715,15 @@ class RemoteService {
   static Future getNotificationDelete({required String id}) async {
     try {
       Response res = await client.get(
-        Uri.parse(baseUrl + accounts + 'auth/delete_notification?notificationId='),
+        Uri.parse(
+            baseUrl + accounts + 'auth/delete_notification?notificationId='),
         // Uri.parse("https://gateway.dev.parrotpos.com.my/accounts/auth/notifications"),
         headers:
             // authHeader
             {
           "Content-type": "application/json; charset=utf-8",
-          "access_id": "8ghgseoca07f4yu4nx2yizkc0mtsm7w7ftmqyiuoes65nmup8ldf2jwqu8hsq37eomg1cadyl3jgfcd439brk0l933d3j70ws39sklc97co32rssnb3t6fkqf4av6htic9zyiqqhbcg7don3eegd5a",
+          "access_id":
+              "8ghgseoca07f4yu4nx2yizkc0mtsm7w7ftmqyiuoes65nmup8ldf2jwqu8hsq37eomg1cadyl3jgfcd439brk0l933d3j70ws39sklc97co32rssnb3t6fkqf4av6htic9zyiqqhbcg7don3eegd5a",
         },
       );
 
@@ -1695,7 +1751,8 @@ class RemoteService {
   static Future getFetchMainWalletReloadInfo() async {
     try {
       Response res = await client.get(
-        Uri.parse(baseUrl + userReports + 'reports/fetch-main-wallet-reload-info'),
+        Uri.parse(
+            baseUrl + userReports + 'reports/fetch-main-wallet-reload-info'),
         headers: authHeader,
       );
 
@@ -1757,11 +1814,13 @@ class RemoteService {
       var response = jsonDecode(res.body);
 
       if (res.statusCode == 502) {
-        prefix.Get.offAll(ServerMaintenanceScreen(screenName: "Earning To Main Transfer"));
+        prefix.Get.offAll(
+            ServerMaintenanceScreen(screenName: "Earning To Main Transfer"));
       }
 
       if (response["status"] == 503) {
-        prefix.Get.offAll(ServerMaintenanceScreen(screenName: "Earning To Main Transfer"));
+        prefix.Get.offAll(
+            ServerMaintenanceScreen(screenName: "Earning To Main Transfer"));
         return response;
       }
       return response;
@@ -1791,7 +1850,8 @@ class RemoteService {
         prefix.Get.to(const CustomServerUpgradeScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired') {
+      if (response['status'] == 401 &&
+          response['message'] == 'Session Expired') {
         return MyReferral(
           status: 401,
           message: 'Session Expired!',
@@ -1809,11 +1869,13 @@ class RemoteService {
     }
   }
 
-  static Future<TodaysReferralEarnings> getTodaysReferralEarnings(Map map) async {
+  static Future<TodaysReferralEarnings> getTodaysReferralEarnings(
+      Map map) async {
     try {
       TodaysReferralEarnings todaysReferralEarnings;
       Response res = await client.post(
-        Uri.parse(baseUrl + userReports + "reports/todays-referral-earning-list"),
+        Uri.parse(
+            baseUrl + userReports + "reports/todays-referral-earning-list"),
         headers: authHeader,
         body: jsonEncode(map),
       );
@@ -1828,7 +1890,8 @@ class RemoteService {
         prefix.Get.to(const CustomServerUpgradeScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired') {
+      if (response['status'] == 401 &&
+          response['message'] == 'Session Expired') {
         return TodaysReferralEarnings(
           status: 401,
           message: 'Session Expired!',
@@ -1868,7 +1931,8 @@ class RemoteService {
         prefix.Get.to(const CustomServerUpgradeScreen());
       }
       print(response);
-      if (response['status'] == 401 && response['message'] == 'Session Expired') {
+      if (response['status'] == 401 &&
+          response['message'] == 'Session Expired') {
         return MyLevelReferralUsers(
           status: 401,
           message: 'Session Expired!',
@@ -1901,7 +1965,9 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return TopUpProducts(
           status: 401,
           message: 'Unable to fetch topup products!',
@@ -1934,7 +2000,9 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return RecentTopUp(
           status: 401,
           message: 'Unable to fetch recent topup!',
@@ -1968,7 +2036,9 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return TopUpAmounts(
           status: 401,
           message: 'Unable to fetch topup amounts!',
@@ -2003,8 +2073,13 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
-        return OutstandingBill(status: 401, message: 'Unable to fetch outstanding bill!', bill: null);
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
+        return OutstandingBill(
+            status: 401,
+            message: 'Unable to fetch outstanding bill!',
+            bill: null);
       }
 
       outstandingBill = OutstandingBill.fromJson(response);
@@ -2338,11 +2413,13 @@ class RemoteService {
       print(response);
 
       if (res.statusCode == 502) {
-        prefix.Get.offAll(const ServerMaintenanceScreen(screenName: "Bill Payment"));
+        prefix.Get.offAll(
+            const ServerMaintenanceScreen(screenName: "Bill Payment"));
       }
 
       if (response["status"] == 503) {
-        prefix.Get.to(const ServerMaintenanceScreen(screenName: "Bill Payment"));
+        prefix.Get.to(
+            const ServerMaintenanceScreen(screenName: "Bill Payment"));
         return response;
       }
 
@@ -2387,7 +2464,9 @@ class RemoteService {
     try {
       BillPaymentCategories billPaymentCategories;
       Response res = await client.post(
-        Uri.parse(baseUrl + userReports + "bill-payment-screen/bill-payment-categories"),
+        Uri.parse(baseUrl +
+            userReports +
+            "bill-payment-screen/bill-payment-categories"),
         headers: authHeader,
         body: jsonEncode(map),
       );
@@ -2400,7 +2479,9 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return BillPaymentCategories(
           status: 401,
           message: 'Unable to fetch categories!',
@@ -2460,7 +2541,8 @@ class RemoteService {
     try {
       BillPaymentAmounts billPaymentAmounts;
       Response res = await client.post(
-        Uri.parse(baseUrl + userReports + "bill-payment-screen/bill-payment-amounts"),
+        Uri.parse(
+            baseUrl + userReports + "bill-payment-screen/bill-payment-amounts"),
         headers: authHeader,
         body: jsonEncode(map),
       );
@@ -2471,7 +2553,9 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return BillPaymentAmounts(
           status: 401,
           message: 'Unable to fetch bill payment amounts!',
@@ -2491,7 +2575,8 @@ class RemoteService {
     }
   }
 
-  static Future<AllFavorites> getAllFavorites(Map map, {bool refreshing = false}) async {
+  static Future<AllFavorites> getAllFavorites(Map map,
+      {bool refreshing = false}) async {
     try {
       AllFavorites allFavorites;
 
@@ -2533,7 +2618,9 @@ class RemoteService {
         }
 
         print(response.toString());
-        if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+        if (response['status'] == 401 &&
+                response['message'] == 'Session Expired' ||
+            response['status'] == 503) {
           return AllFavorites(
             status: 401,
             message: 'Unable to fetch favorites!',
@@ -2544,7 +2631,8 @@ class RemoteService {
         allFavorites = AllFavorites.fromJson(response);
         print("Length ========== ${allFavorites.data!.length}");
         allFavorites.data!.forEach((element) {
-          print("+-+-+-+-+-+-+- A B C ${element.lastTransactionId} == ${element.lastTransactionStatus}");
+          print(
+              "+-+-+-+-+-+-+- A B C ${element.lastTransactionId} == ${element.lastTransactionStatus}");
         });
         // allFavorites.data!.sort((a, b) => a.order!.compareTo(b.order!));
         return allFavorites;
@@ -2583,7 +2671,9 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return AllRecurring(
           status: 401,
           message: 'Unable to fetch recurring!',
@@ -2620,7 +2710,9 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return Recurring(
           status: 401,
           message: 'Unable to fetch recurring!',
@@ -2630,7 +2722,8 @@ class RemoteService {
 
       allFavorites = Recurring.fromJson(response);
 
-      recurring = Recurring(data: [], message: allFavorites.message, status: allFavorites.status);
+      recurring = Recurring(
+          data: [], message: allFavorites.message, status: allFavorites.status);
       for (var item in allFavorites.data!) {
         if (!item.recurring!) {
           recurring.data!.add(item);
@@ -2662,7 +2755,9 @@ class RemoteService {
         prefix.Get.offAll(const ServerMaintenanceScreen());
       }
 
-      if (response['status'] == 401 && response['message'] == 'Session Expired' || response['status'] == 503) {
+      if (response['status'] == 401 &&
+              response['message'] == 'Session Expired' ||
+          response['status'] == 503) {
         return FavoriteCategories(
           status: 401,
           message: 'Unable to fetch categories!',
@@ -2735,7 +2830,8 @@ class RemoteService {
         prefix.Get.to(const CustomServerUpgradeScreen());
       }
 
-      if (response['status'] == 401 || response['message'] == 'Session Expired') {
+      if (response['status'] == 401 ||
+          response['message'] == 'Session Expired') {
         return Donation(
           status: 401,
           message: 'Session Expired!',

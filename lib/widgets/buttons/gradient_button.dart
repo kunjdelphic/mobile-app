@@ -54,7 +54,9 @@ class GradientButton extends StatelessWidget {
                     offset: const Offset(0, 4),
                   ),
                 ],
-                borderRadius: borderRadius != null ? BorderRadius.circular(borderRadius!) : BorderRadius.circular(borderRadius ?? 12),
+                borderRadius: borderRadius != null
+                    ? BorderRadius.circular(borderRadius!)
+                    : BorderRadius.circular(borderRadius ?? 12),
               ),
               alignment: Alignment.center,
               child: const Center(
@@ -168,7 +170,9 @@ class GradientButton extends StatelessWidget {
                     // offset: const Offset(0, 4),
                   ),
                 ],
-                borderRadius: borderRadius != null ? BorderRadius.circular(borderRadius!) : BorderRadius.circular(12),
+                borderRadius: borderRadius != null
+                    ? BorderRadius.circular(borderRadius!)
+                    : BorderRadius.circular(12),
               ),
               // alignment: Alignment.center,
               child: InkWell(
@@ -203,7 +207,14 @@ class GradientBtn extends StatelessWidget {
   final bool width;
   final String text;
   final void Function() onTap;
-  const GradientBtn({super.key, this.borderRadius, this.color, required this.widthSize, required this.width, required this.text, required this.onTap});
+  const GradientBtn(
+      {super.key,
+      this.borderRadius,
+      this.color,
+      required this.widthSize,
+      required this.width,
+      required this.text,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -213,7 +224,7 @@ class GradientBtn extends StatelessWidget {
       color: kWhite.withOpacity(0.7),
       child: Ink(
         height: 45,
-        width: 197, //width ? widthSize : size.width * 0.85,
+        width: width ? widthSize : size.width * 0.85,
         // margin: const EdgeInsets.all(0),
         // padding: const EdgeInsets.symmetric(horizontal: 0),
         decoration: BoxDecoration(
@@ -233,7 +244,9 @@ class GradientBtn extends StatelessWidget {
               // offset: const Offset(0, 4),
             ),
           ],
-          borderRadius: borderRadius != null ? BorderRadius.circular(borderRadius!) : BorderRadius.circular(12),
+          borderRadius: borderRadius != null
+              ? BorderRadius.circular(borderRadius!)
+              : BorderRadius.circular(12),
         ),
         // alignment: Alignment.center,
         child: InkWell(
@@ -408,7 +421,8 @@ class CommonBorderBtn extends StatelessWidget {
   final double? width;
   final TextStyle? style;
 
-  const CommonBorderBtn({super.key, this.onTap, this.title, this.border, this.width, this.style});
+  const CommonBorderBtn(
+      {super.key, this.onTap, this.title, this.border, this.width, this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -520,7 +534,9 @@ class WhiteBluBtn extends StatelessWidget {
               // offset: const Offset(0, 4),
             ),
           ],
-          borderRadius: borderRadius != null ? BorderRadius.circular(borderRadius!) : BorderRadius.circular(12),
+          borderRadius: borderRadius != null
+              ? BorderRadius.circular(borderRadius!)
+              : BorderRadius.circular(12),
         ),
         // alignment: Alignment.center,
         child: InkWell(

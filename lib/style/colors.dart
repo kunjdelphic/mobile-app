@@ -31,7 +31,7 @@ const kBlackExtraLightColor = Colors.black26;
 const kWhiteDarkColor = Colors.white;
 const kWhiteMediumColor = Colors.white70;
 const kWhiteLightColor = Colors.white54;
-
+const kwhitegrey = Color.fromRGBO(237, 237, 237, 1);
 const kBlueBtnColor1 = Color(0xff1B75BB);
 const kBlueBtnColor2 = Color(0xff2B388F);
 const kBlueBtnColor = Color(0xff002b7f);
